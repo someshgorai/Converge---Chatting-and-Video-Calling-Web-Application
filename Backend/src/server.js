@@ -8,18 +8,17 @@ import { connectDB } from "./lib/mongoDB/db.mongo.js";
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(express.json());
+app.use(express.json()); // Parses incoming requests with JSON payloads and puts the parsed data in req.body
 
 app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
-    // MongoDB
-    connectDB();
+  console.log(`Listening on port ${PORT}`);
+  // MongoDB
+  connectDB();
 
-    // PostgreSQL
-    db.connect()
-        .then(() => console.log("Connected to PostgreSQL"))
-        .catch((err) => console.error("DB connection error:", err));
-
+  // PostgreSQL
+  db.connect()
+    .then(() => console.log("Connected to PostgreSQL"))
+    .catch((err) => console.error("DB connection error:", err));
 });
