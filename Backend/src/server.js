@@ -3,6 +3,7 @@ import "dotenv/config";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
 import { db } from "./lib/sql/db.postgres.js";
 import { connectDB } from "./lib/mongoDB/db.mongo.js";
 
@@ -13,6 +14,7 @@ app.use(express.json()); // Parses incoming requests with JSON payloads and puts
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
