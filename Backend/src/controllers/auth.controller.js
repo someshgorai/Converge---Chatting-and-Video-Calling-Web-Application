@@ -49,9 +49,9 @@ export async function signup(req, res) {
 
     res.cookie("jwt", token, {
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      httpOnly: true, // prevent XSS attacks
-      sameSite: "strict", // prevent CSRF attacks
-      sccure: process.env.NODE_ENV === "production",
+      httpOnly: true, // Can't be accessed via JavaScript (prevents XSS)
+      sameSite: "strict", // Only same-site requests allowed (prevents CSRF)
+      secure: process.env.NODE_ENV === "production", // Sends cookie only over HTTPS in production
     });
 
     res.status(201).json({ success: true, user: newUser });
