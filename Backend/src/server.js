@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
-import { db } from "./lib/sql/db.postgres.js";
 import { connectDB } from "./lib/mongoDB/db.mongo.js";
 
 const app = express();
@@ -18,11 +17,5 @@ app.use("/api/users", userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
-  // MongoDB
   connectDB();
-
-  // PostgreSQL
-  db.connect()
-    .then(() => console.log("Connected to PostgreSQL"))
-    .catch((err) => console.error("DB connection error:", err));
 });
