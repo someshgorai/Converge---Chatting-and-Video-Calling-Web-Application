@@ -9,7 +9,7 @@ const useLogin = () => {
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ["authUser"] }),
   });
 
-  return { loginMutation, isPending, error }
+  return { loginMutation, isPending, error };
 }
 
 export default useLogin;
