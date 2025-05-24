@@ -11,10 +11,12 @@ import OnboardingPage from "./pages/OnboardingPage.jsx";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
+import { useThemeStore } from "./store/useThemeStore.js";
 
 
 const App = () => {
-  const {isLoading, authUser} = useAuthUser();
+  const { isLoading, authUser } = useAuthUser();
+  const { theme } = useThemeStore();
  
   if(isLoading) return <PageLoader />
 
@@ -22,7 +24,7 @@ const App = () => {
   const  isOnboarded = authUser?.isOnboarded;
 
   return (
-    <div className=" h-screen" data-theme="forest">
+    <div className=" h-screen" data-theme={theme}>
       <Routes>
         <Route path="/" element={isAuthenticated && isOnboarded ? (
           <Layout showSidebar={true}>
