@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router";
 import { Toaster } from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
 
 import HomePage from "./pages/HomePage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
@@ -11,6 +10,7 @@ import ChatPage from "./pages/ChatPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
+import Layout from "./components/Layout.jsx";
 
 
 const App = () => {
@@ -25,7 +25,9 @@ const App = () => {
     <div className=" h-screen" data-theme="forest">
       <Routes>
         <Route path="/" element={isAuthenticated && isOnboarded ? (
-          <HomePage /> 
+          <Layout showSidebar={true}>
+            <HomePage />   
+          </Layout>
           ) : (
           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"}/>
           )} />
