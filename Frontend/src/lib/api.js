@@ -66,3 +66,16 @@ export async function getStreamToken() {
   const response = await axiosInstance.get("/chat/token");
   return response.data;
 }
+
+export async function submitReview({ rating, feedback }) {
+  try {
+    const response = await axiosInstance.post("/review", {
+      rating,
+      feedback,
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting review:", error.response?.data || error.message);
+    throw error; // Let caller handle the error (e.g. show toast)
+  }
+}
